@@ -5,6 +5,8 @@ import co.id.artslv.lib.responses.MessageWrapper;
 import co.id.artslv.lib.utility.CustomErrorResponse;
 import co.id.artslv.lib.utility.CustomException;
 import co.id.artslv.service.BoardingService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +23,16 @@ public class BoardingController {
     private BoardingService boardingService;
 
     @RequestMapping(value = "/gate_in",method = RequestMethod.POST)
-    public ResponseEntity<?> getPayment(@RequestBody Boarding boarding){
-        MessageWrapper payments;
+    public ResponseEntity<?> gateIn(@RequestBody Boarding boarding) throws JsonProcessingException {
+        MessageWrapper gatein;
         try {
-            payments = boardingService.insertGateIn(boarding);
+            gatein = boardingService.insertGateIn(boarding);
         } catch (CustomException e) {
             CustomErrorResponse customErrorResponse = (CustomErrorResponse) e.getCause();
             MessageWrapper<Object> error = new MessageWrapper<>(customErrorResponse);
             return new ResponseEntity<>(error, HttpStatus.OK);
         }
-        return new ResponseEntity<>(payments,HttpStatus.OK);
+        return new ResponseEntity<>(gatein,HttpStatus.OK);
     }
 
 }
