@@ -20,11 +20,11 @@ public class BoardingController {
     @Autowired
     private BoardingService boardingService;
 
-    @RequestMapping(value = "/gate_in/{rqid}",method = RequestMethod.POST)
-    public ResponseEntity<?> getPayment(@RequestBody Boarding boarding, @PathVariable String rqid){
+    @RequestMapping(value = "/gate_in",method = RequestMethod.POST)
+    public ResponseEntity<?> getPayment(@RequestBody Boarding boarding){
         MessageWrapper payments;
         try {
-            payments = boardingService.insertGateIn(boarding,rqid);
+            payments = boardingService.insertGateIn(boarding);
         } catch (CustomException e) {
             CustomErrorResponse customErrorResponse = (CustomErrorResponse) e.getCause();
             MessageWrapper<Object> error = new MessageWrapper<>(customErrorResponse);

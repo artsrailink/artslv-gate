@@ -18,7 +18,7 @@ public class BoardingService {
     private BoardingRepository boardingRepository;
 
     @Transactional(rollbackFor = CustomException.class)
-    public MessageWrapper insertGateIn(Boarding boarding, String rqid) throws CustomException {
+    public MessageWrapper insertGateIn(Boarding boarding) throws CustomException {
 
         if((boarding.getBookcode() == null || boarding.getBookcode().trim().equals("")) &&
                 (boarding.getTicketnum() == null || boarding.getTicketnum().trim().equals("")) &&
