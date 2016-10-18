@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableDiscoveryClient
 @EnableJpaRepositories(basePackages = "co.id.artslv.repository")
 @EntityScan(basePackages = "co.id.artslv.lib")
-public class BookingServiceApplication {
+public class BoardingServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookingServiceApplication.class, args);
+		SpringApplication.run(BoardingServiceApplication.class, args);
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by gemuruhgeo on 14/09/16.
  */
 @Configuration
-public class GateConfiguration {
+public class BoardingConfiguration {
 
     @Bean
     public ObjectMapper objectMapper(){
