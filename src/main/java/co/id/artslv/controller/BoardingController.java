@@ -39,7 +39,7 @@ public class BoardingController {
     public ResponseEntity<?> gateOut(@RequestBody Boarding boarding) throws JsonProcessingException {
         MessageWrapper gateout;
         try {
-            gateout = boardingService.insertGateIn(boarding);
+            gateout = boardingService.insertGateOut(boarding);
         } catch (CustomException e) {
             CustomErrorResponse customErrorResponse = (CustomErrorResponse) e.getCause();
             MessageWrapper<Object> error = new MessageWrapper<>(customErrorResponse);

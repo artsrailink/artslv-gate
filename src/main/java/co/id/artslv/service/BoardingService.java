@@ -93,7 +93,7 @@ public class BoardingService {
                         if (!datapay.isEmpty()) {
                             if (datapay.stream().anyMatch(p->p.getStatus().equals("3"))) {
                                 if (!datapay.stream().anyMatch(p->p.getStatus().equals("4"))) {
-                                    boarding.setStatus("3");
+                                    boarding.setStatus("4");
                                     boarding.setDomain(datapay.get(0).getDomain());
                                     boarding.setCreatedon(LocalDateTime.now());
                                     boarding.setCreatedby("userpos");
