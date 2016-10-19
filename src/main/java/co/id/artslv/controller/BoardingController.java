@@ -34,5 +34,18 @@ public class BoardingController {
         }
         return new ResponseEntity<>(gatein,HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/gate_out",method = RequestMethod.POST)
+    public ResponseEntity<?> gateOut(@RequestBody Boarding boarding) throws JsonProcessingException {
+        MessageWrapper gateout;
+        try {
+            gateout = boardingService.insertGateIn(boarding);
+        } catch (CustomException e) {
+            CustomErrorResponse customErrorResponse = (CustomErrorResponse) e.getCause();
+            MessageWrapper<Object> error = new MessageWrapper<>(customErrorResponse);
+            return new ResponseEntity<>(error, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(gateout,HttpStatus.OK);
+    }
 
 }
