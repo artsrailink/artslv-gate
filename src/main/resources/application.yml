@@ -29,5 +29,5 @@ spring:
     username: ARTSDEV
     password: ARTSDEVGP
 
-logging:
-  file: /usr/logging/gate.log
+#logging:
+#  file: /usr/logging/gate.log
