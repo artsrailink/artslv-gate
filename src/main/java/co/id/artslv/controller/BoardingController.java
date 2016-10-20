@@ -22,7 +22,7 @@ public class BoardingController {
     @Autowired
     private BoardingService boardingService;
 
-    @RequestMapping(value = "/gate_in",method = RequestMethod.POST)
+    @RequestMapping(value = "/arts_gatein",method = RequestMethod.POST)
     public ResponseEntity<?> gateIn(@RequestBody Boarding boarding) throws JsonProcessingException {
         MessageWrapper gatein;
         try {
@@ -35,7 +35,7 @@ public class BoardingController {
         return new ResponseEntity<>(gatein,HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/gate_out",method = RequestMethod.POST)
+    @RequestMapping(value = "/arts_gateout",method = RequestMethod.POST)
     public ResponseEntity<?> gateOut(@RequestBody Boarding boarding) throws JsonProcessingException {
         MessageWrapper gateout;
         try {
