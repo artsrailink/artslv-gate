@@ -33,7 +33,7 @@ public class BoardingService {
                     ) {
                 throw new CustomException(new CustomErrorResponse("02", "Bookcode, Ticketnum, Stasiun Id, Stasiun Code, Unit Id, Unit Code And Trip Date must be filled"));
             } else {
-                if (boarding.getBookcode().length() != 7 && boarding.getTicketnum().length() != 7) {
+                if (boarding.getBookcode().length() != 7 && boarding.getTicketnum().length() != 10) {
                     throw new CustomException(new CustomErrorResponse("04", "Transaction not found"));
                 } else {
                     List<Boarding> datapay = boardingRepository.findByTicketnum(boarding.getTicketnum());
@@ -41,15 +41,15 @@ public class BoardingService {
                         if (!datapay.isEmpty()) {
                             if (datapay.stream().anyMatch(p->p.getStatus().equals("2"))) {
                                 if (!datapay.stream().anyMatch(p->p.getStatus().equals("3") || p.getStatus().equals("4"))) {
-                                    boarding.setStatus("3");
-                                    boarding.setDomain(datapay.get(0).getDomain());
-                                    boarding.setCreatedon(LocalDateTime.now());
-                                    boarding.setCreatedby("userpos");
-                                    boarding.setModifiedon(LocalDateTime.now());
-                                    boarding.setModifiedby("userpos");
-                                    boardingRepository.save(boarding);
-                                    MessageWrapper resultWrapperPayment = new MessageWrapper<>("00", "GATE IN SUCCESS");
-                                    return resultWrapperPayment;
+                                        boarding.setStatus("3");
+                                        boarding.setDomain(datapay.get(0).getDomain());
+                                        boarding.setCreatedon(LocalDateTime.now());
+                                        boarding.setCreatedby("userpos");
+                                        boarding.setModifiedon(LocalDateTime.now());
+                                        boarding.setModifiedby("userpos");
+                                        boardingRepository.save(boarding);
+                                        MessageWrapper resultWrapperPayment = new MessageWrapper<>("00", "GATE IN SUCCESS");
+                                        return resultWrapperPayment;
                                 }
                                 else{
                                     throw new CustomException(new CustomErrorResponse("03", "Already Boarding"));
@@ -85,7 +85,7 @@ public class BoardingService {
                     ) {
                 throw new CustomException(new CustomErrorResponse("02", "Bookcode, Ticketnum, Stasiun Id, Stasiun Code, Unit Id, Unit Code And Trip Date must be filled"));
             } else {
-                if (boarding.getBookcode().length() != 7 && boarding.getTicketnum().length() != 7) {
+                if (boarding.getBookcode().length() != 7 && boarding.getTicketnum().length() != 10) {
                     throw new CustomException(new CustomErrorResponse("04", "Transaction not found"));
                 } else {
                     List<Boarding> datapay = boardingRepository.findByTicketnum(boarding.getTicketnum());
